@@ -8,7 +8,7 @@ setTimeout(() => {
 }, 2000);
   return (
     <div>
-      {name1}
+      {name2}
     </div>
   )
 }
