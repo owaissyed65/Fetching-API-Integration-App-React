@@ -9,7 +9,10 @@ const App=()=> {
     <State>
       <Navbar/>
        <Routes>
-        <Route path="/" element={<News />} ></Route>
+        <Route exact path="/" element={<News />} ></Route>
+        <Route exact path="/home" element={<News />} ></Route>
+        <Route exact path="/news/in" element={<News/>} ></Route>
+        <Route exact path="/news/us" element={<News/>} ></Route>
       </Routes>
     </State>
     </div>

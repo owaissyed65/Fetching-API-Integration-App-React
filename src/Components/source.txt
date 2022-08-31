@@ -128,3 +128,9 @@
     "publishedAt": "2022-08-29T06:19:00Z",
     "content": "Dow Jones futures fell solidly Monday morning, along with S&amp;P 500 futures and Nasdaq futures. The stock market rally suffered significant weekly losses again last week, with Federal Reserve chief… [+11075 chars]"
     },
+
+    {loadingMap && articles.map((content) => {
+                                return <div className="col-md-3 my-3" key={content.url}>
+                                    <NewsItem title={content.title} img={content.urlToImage} description={content.description} url={content.url} />
+                                </div>
+                            })}

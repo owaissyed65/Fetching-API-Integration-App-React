@@ -7,14 +7,15 @@ const State = (props) => {
 
   const [articles, setArticles] = useState([]);
   const [results, setResults] = useState(0);
-  const [page, setPage] = useState({page:0});
   const [pageUpdate, setpageUpdate] = useState(1);
   const [load, setLoad] = useState(false);
   const [loadingMap, setloadingMap] = useState(true);
+  const [text, setText] = useState('');
   // All arrown key functions
-  const fetchData = async () => {
-    let url = ` https://newsapi.org/v2/top-headlines?country=in&apiKey=${apikeys}&page=${1}&pagesize=${pageSize}`;
-    // setPage({page:page+1})
+  const fetchData = async (country,category) => {
+    let url = ` https://newsapi.org/v2/top-headlines?country=${country?country:'us'}&apiKey=${apikeys}&page=${pageUpdate}&pagesize=${pageSize}`;
+    console.log(country)
+    console.log(url)
     setloadingMap(false)
     setLoad(true)
     let data = await fetch(url);
@@ -25,15 +26,20 @@ const State = (props) => {
     setResults(parseData.totalResults)
   }
   const fetchMoreData = async () => {
-    // setPage({page:page+1})
-    let url = ` https://newsapi.org/v2/top-headlines?country=in&apiKey=${apikeys}&page=${pageUpdate + 1}&pagesize=${pageSize}`;
-    setpageUpdate(pageUpdate + 1) ;
-    console.log(pageUpdate)
+    let url = ` https://newsapi.org/v2/top-headlines?country=us&apiKey=${apikeys}&page=${pageUpdate + 1}&pagesize=${pageSize}`;
+    setpageUpdate(pageUpdate + 1)
+    // console.log(pageUpdate)
+    setLoad(true)
     let data = await fetch(url);
     let parsedData = await data.json()
+    setLoad(false)
+    setloadingMap(true)
     setArticles(articles.concat(parsedData.articles))
     setResults(parsedData.totalResults)
   };
+  const handleOnChange = (event) => {
+    setText(event.target.value)
+  }
   // Use Effect Hooks
   useEffect(() => {
     fetchData()
@@ -41,7 +47,7 @@ const State = (props) => {
   }, []);
 
   return (
-    <Context.Provider value={{ articles, results, load, loadingMap, fetchMoreData }}>
+    <Context.Provider value={{ articles, results, load, loadingMap, fetchMoreData, text, fetchData,handleOnChange }}>
       {props.children}
     </Context.Provider>
   )
