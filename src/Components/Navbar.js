@@ -5,7 +5,7 @@ import Context from '../Context/Context';
 
 const Navbar = () => {
     const context = useContext(Context);
-    const { text, handleOnChange, fetchData } = context
+    const { text, handleOnChange, newFetchData } = context
     return (
         <div>
             <nav className="navbar navbar-expand-lg bg-light fixed-top">
@@ -20,10 +20,18 @@ const Navbar = () => {
                                 <Link className="nav-link active" aria-current="page" to="/home">Home</Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/news/in"><button style={{ border: '0px' }} onClick={() => { fetchData("in") }}>India</button></Link>
+                                <Link className="nav-link" to="/news/in"><button style={{ border: '0px' }} onClick={() => {
+                                    newFetchData("in")
+                                }}>India</button></Link>
                             </li>
                             <li className="nav-item">
-                                <Link className="nav-link" to="/news/us"><button style={{ border: '0px' }} onClick={() => { fetchData("us") }}>USA</button></Link>
+                                <Link className="nav-link" to="/news/us"><button style={{ border: '0px' }} onClick={() => { newFetchData("us") }}>USA</button></Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/news/sa"><button style={{ border: '0px' }} onClick={() => { newFetchData("sa") }}>South Africa</button></Link>
+                            </li>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/news/jp"><button style={{ border: '0px' }} onClick={() => { newFetchData("jp") }}>Japan</button></Link>
                             </li>
                         </ul>
                         <div className="d-flex" role="search">

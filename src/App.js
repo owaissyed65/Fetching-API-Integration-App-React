@@ -13,6 +13,8 @@ const App=()=> {
         <Route exact path="/home" element={<News />} ></Route>
         <Route exact path="/news/in" element={<News/>} ></Route>
         <Route exact path="/news/us" element={<News/>} ></Route>
+        <Route exact path="/news/sa" element={<News/>} ></Route>
+        <Route exact path="/news/jp" element={<News/>} ></Route>
       </Routes>
     </State>
     </div>
