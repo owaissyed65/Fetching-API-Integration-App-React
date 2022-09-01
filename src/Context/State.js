@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Context from './Context'
 
 const State = (props) => {
-  const apikeys = 'fef29adb63fa4a82a8aa6ddb15911473'
+  const apikeys = 'cd1090a10515434cb109acbd8a415dde'
   const pageSize = 12
   const [articles, setArticles] = useState([]);
   const [results, setResults] = useState(0);
@@ -11,6 +11,7 @@ const State = (props) => {
   const [loadingMap, setloadingMap] = useState(true);
   const [text, setText] = useState('');
   const [country, setCountry] = useState();
+  const [category, setCategory] = useState();
   // All arrown key functions
   const fetchData = async () => {
     let url = ` https://newsapi.org/v2/top-headlines?country=us&apiKey=${apikeys}&page=${pageUpdate}&pagesize=${pageSize}`;
@@ -24,9 +25,11 @@ const State = (props) => {
     setResults(parseData.totalResults)
   }
   // these functions are for clicking in button
-  const newFetchData = async (exCountry) => {
+  const newFetchData = async (exCountry,excategory='general') => {
     setCountry(exCountry)
-    let url = ` https://newsapi.org/v2/top-headlines?country=${exCountry}&apiKey=${apikeys}&page=${pageUpdate>1?setpageUpdate(1):pageUpdate}&pagesize=${pageSize}`;
+    setCategory(excategory)
+    console.log(category)
+    let url = ` https://newsapi.org/v2/top-headlines?country=${exCountry}&apiKey=${apikeys}&page=${pageUpdate>1?setpageUpdate(1):pageUpdate}&pagesize=${pageSize}&category=${excategory}`;
     setloadingMap(false)
     setLoad(true)
     let data = await fetch(url);
@@ -37,9 +40,9 @@ const State = (props) => {
     setResults(parseData.totalResults)
     
   }
-  const fetchMoreData = async (exCountry='us') => {
+  const fetchMoreData = async (exCountry='us',excategory) => {
     setpageUpdate(pageUpdate + 1)
-    let url = ` https://newsapi.org/v2/top-headlines?country=${exCountry}&apiKey=${apikeys}&page=${pageUpdate + 1 }&pagesize=${pageSize}`;
+    let url = ` https://newsapi.org/v2/top-headlines?country=${exCountry}&apiKey=${apikeys}&page=${pageUpdate + 1 }&pagesize=${pageSize}&category=${excategory}`;
     setLoad(true)
     let data = await fetch(url);
     let parsedData = await data.json()
@@ -59,7 +62,7 @@ const State = (props) => {
   }, []);
 
   return (
-    <Context.Provider value={{ articles, results, load, loadingMap, fetchMoreData, text, fetchData, handleOnChange,newFetchData,country,pageUpdate ,setpageUpdate}}>
+    <Context.Provider value={{ articles, results, load, loadingMap, fetchMoreData, text, fetchData, handleOnChange,newFetchData,country,pageUpdate ,setpageUpdate,category}}>
       {props.children}
     </Context.Provider>
   )

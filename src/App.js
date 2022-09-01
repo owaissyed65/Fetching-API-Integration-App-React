@@ -15,6 +15,9 @@ const App=()=> {
         <Route exact path="/news/us" element={<News/>} ></Route>
         <Route exact path="/news/sa" element={<News/>} ></Route>
         <Route exact path="/news/jp" element={<News/>} ></Route>
+        <Route exact path="/news/nz/sports" element={<News/>} ></Route>
+        <Route exact path="/news/nz/business" element={<News/>} ></Route>
+        <Route exact path="/news/nz/entertainment" element={<News/>} ></Route>
       </Routes>
     </State>
     </div>

@@ -33,6 +33,17 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/news/jp"><button style={{ border: '0px' }} onClick={() => { newFetchData("jp") }}>Japan</button></Link>
                             </li>
+                            <li className="nav-item dropdown">
+                                <a className="nav-link dropdown-toggle" href="/" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    NewZealand
+                                </a>
+                                <ul className="dropdown-menu">
+                                    <li><Link className="dropdown-item" to='/news/nz/sports'><button style={{ border: '0px' }} onClick={() => { newFetchData("nz",'sports') }}>Sports</button></Link></li>
+                                    <li><Link className="dropdown-item" to='/news/nz/business'><button style={{ border: '0px' }} onClick={() => { newFetchData("nz",'business') }}>Business</button></Link></li>
+                                    <li><Link className="dropdown-item" to='/news/nz/entertainment'><button style={{ border: '0px' }} onClick={() => { newFetchData("nz",'entertainment') }}>Entertainment</button></Link></li>
+                                </ul>
+                            </li>
+
                         </ul>
                         <div className="d-flex" role="search">
                             <input className="form-control me-2" type="search" placeholder="Search..." aria-label="Search" value={text} onChange={handleOnChange} id={'search'} />

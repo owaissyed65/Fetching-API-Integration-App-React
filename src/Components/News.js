@@ -6,7 +6,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 const News = () => {
     const context = useContext(Context);
-    const { articles, results, load, loadingMap, fetchMoreData, text, country } = context
+    const { articles, results, load, loadingMap, fetchMoreData, text, country, category } = context
     const changeCountry = (country) => {
         if (typeof (country) === 'string') {
             if (country === 'in') {
@@ -34,20 +34,35 @@ const News = () => {
                 document.title = `${newCountry}-Top headlines`
                 return newCountry
             }
+            if (country === 'nz') {
+                country = 'newzealand'
+                let newCountry = country.toUpperCase()
+                document.title = `${newCountry}-${category} Top headlines`
+                return newCountry
+            }
         }
         else {
             return country
         }
     }
+    const capitalizeLetter =(category)=>{
+       if (typeof(category)==='string'){
+        let newWord = category.charAt(0).toUpperCase() + category.slice(1)
+        return newWord;
+       } 
+       else {
+        return category
+       }
+    }
     return (
         <>
             <div  >
-                <h1 className='container d-flex justify-content-center mt-5 heading my-3' > <strong>{changeCountry(country)}</strong>&nbsp;News top Headline</h1>
+                <h1 className='container d-flex justify-content-center mt-5 heading my-3' > <strong>{changeCountry(country)}</strong>&nbsp;News <strong>&nbsp;{capitalizeLetter(category)}</strong>&nbsp;Top Headline</h1>
                 {load && <Spinner />}
                 <div className="container">
                     <InfiniteScroll
                         dataLength={articles.length}
-                        next={() => fetchMoreData(country)}
+                        next={() => fetchMoreData(country,category)}
                         hasMore={articles.length !== results}
                         loader={<Spinner />}
                     >
