@@ -6,64 +6,84 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 const News = () => {
     const context = useContext(Context);
-    const { articles, results, load, loadingMap, fetchMoreData, text, country, category } = context
+    const { articles, results, loadingMap, fetchMoreData, text, country, category } = context
     const changeCountry = (country) => {
         if (typeof (country) === 'string') {
-            if (country === 'in') {
-                country = 'india'
+            if (country === 'nz') {
+                country = 'newzealand'
                 let newCountry = country.toUpperCase()
-                document.title = `${newCountry}-Top headlines`
-                return newCountry
+                let newCategory = category.charAt(0).toUpperCase() + category.slice(1)
+                document.title = `${newCountry}-${newCategory} Top headlines`
 
+                return newCountry
+            }
+            if (country === 'in') {
+                country = 'India'
+                let newCountry = country.toUpperCase()
+                let newCategory = category.charAt(0).toUpperCase() + category.slice(1)
+                document.title = `${newCountry}-${newCategory} Top headlines`
+
+                return newCountry
             }
             if (country === 'us') {
                 country = 'usa'
                 let newCountry = country.toUpperCase()
-                document.title = `${newCountry}-Top headlines`
+                let newCategory = category.charAt(0).toUpperCase() + category.slice(1)
+                document.title = `${newCountry}-${newCategory} Top headlines`
+
                 return newCountry
             }
             if (country === 'sa') {
-                country = 'south-africa'
+                country = 'south africa'
                 let newCountry = country.toUpperCase()
-                document.title = `${newCountry}-Top headlines`
+                let newCategory = category.charAt(0).toUpperCase() + category.slice(1)
+                document.title = `${newCountry}-${newCategory} Top headlines`
+
                 return newCountry
             }
             if (country === 'jp') {
                 country = 'japan'
                 let newCountry = country.toUpperCase()
-                document.title = `${newCountry}-Top headlines`
+                let newCategory = category.charAt(0).toUpperCase() + category.slice(1)
+                document.title = `${newCountry}-${newCategory} Top headlines`
+
                 return newCountry
             }
             if (country === 'nz') {
                 country = 'newzealand'
                 let newCountry = country.toUpperCase()
-                document.title = `${newCountry}-${category} Top headlines`
+                let newCategory = category.charAt(0).toUpperCase() + category.slice(1)
+                document.title = `${newCountry}-${newCategory} Top headlines`
+
                 return newCountry
             }
+            
         }
         else {
             return country
         }
     }
-    const capitalizeLetter =(category)=>{
-       if (typeof(category)==='string'){
-        let newWord = category.charAt(0).toUpperCase() + category.slice(1)
-        return newWord;
-       } 
-       else {
-        return category
-       }
+    const capitalizeLetter = (category) => {
+        if (typeof (category) === 'string') {
+            let newWord = category.charAt(0).toUpperCase() + category.slice(1)
+            return newWord;
+        }
+        else {
+            return category
+        }
     }
+
     return (
         <>
-            <div  >
-                <h1 className='container d-flex justify-content-center mt-5 heading my-3' > <strong>{changeCountry(country)}</strong>&nbsp;News <strong>&nbsp;{capitalizeLetter(category)}</strong>&nbsp;Top Headline</h1>
-                {load && <Spinner />}
+            <div >
+                <h1 className='container d-flex justify-content-center mt-5 heading my-3'>{changeCountry(country)?changeCountry(country):'USA'} </h1>
+                <h1 className='container d-flex justify-content-center mt-3 heading my-3 'style={{width:'100vw'}} >{capitalizeLetter(category)?capitalizeLetter(category):'General'} - Top Headline</h1>
+                {/* {load && <Spinner />} */}
                 <div className="container">
                     <InfiniteScroll
                         dataLength={articles.length}
-                        next={() => fetchMoreData(country,category)}
-                        hasMore={articles.length !== results}
+                        next={() => fetchMoreData(country, category)}
+                        hasMore={results !== articles.length }
                         loader={<Spinner />}
                     >
                         <div className='container'>
@@ -80,7 +100,7 @@ const News = () => {
                                     return ''
                                 }).map((content) => {
                                     return <div className="col-md-3 my-3" key={content.url}>
-                                        <NewsItem title={content.title} img={content.urlToImage} description={content.description} url={content.url} />
+                                        <NewsItem title={content.title} img={content.urlToImage} description={content.description} url={content.url} publishedAt={content.publishedAt} content={content.content} name={content.source} author={content.author} />
                                     </div>
                                 })}
                             </div>

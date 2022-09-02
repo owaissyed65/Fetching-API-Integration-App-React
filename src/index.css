@@ -8,3 +8,7 @@ top: 31px;
 .dbh{
     margin-top: 6rem!important;
 }
+button{
+    background-color:transparent !important;
+    border: none !important;
+}
