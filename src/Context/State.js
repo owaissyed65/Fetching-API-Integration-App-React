@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Context from './Context'
 
 const State = (props) => {
-  const apikeys = 'c8b0b814705649d1bf7c66dadcbec58a'
+  const apikeys = 'cd1090a10515434cb109acbd8a415dde'
   const pageSize = 16
   const [articles, setArticles] = useState([]);
   const [results, setResults] = useState(0);
@@ -52,6 +52,7 @@ const State = (props) => {
       articles.length = 0
     }
     let url = ` https://newsapi.org/v2/top-headlines?country=${exCountry}&apiKey=${apikeys}&page=1&pagesize=${pageSize}&category=${excategory}`;
+    console.log("new"+url)
     bar(30)
     setloadingMap(false)
     bar(50)
@@ -65,8 +66,10 @@ const State = (props) => {
     bar(100)
   }
   const fetchMoreData = async (exCountry = 'us', excategory) => {
+
     let url = ` https://newsapi.org/v2/top-headlines?country=${exCountry}&apiKey=${apikeys}&page=${pageUpdate + 1}&pagesize=${pageSize}&category=${excategory ? excategory : 'general'}`;
     setpageUpdate(pageUpdate + 1)
+    console.log("old" +url)
     if (articles.length === 0) {
       articles.length = 16
     }

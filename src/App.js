@@ -10,7 +10,6 @@ const App = () => {
 
   return (
     <div>
-
       <Navbar />
       <LoadingBar
         color='#f11946'
@@ -60,6 +59,30 @@ const App = () => {
         <Route exact path="/news/nz/health" element={<News />} ></Route>
         <Route exact path="/news/nz/science" element={<News />} ></Route>
         <Route exact path="/news/nz/technology" element={<News />} ></Route>
+        {/* These routes are for pt */}
+        <Route exact path="/news/pt/sports" element={<News />} ></Route>
+        <Route exact path="/news/pt/business" element={<News />} ></Route>
+        <Route exact path="/news/pt/entertainment" element={<News />} ></Route>
+        <Route exact path="/news/pt/general" element={<News />} ></Route>
+        <Route exact path="/news/pt/health" element={<News />} ></Route>
+        <Route exact path="/news/pt/science" element={<News />} ></Route>
+        <Route exact path="/news/pt/technology" element={<News />} ></Route>
+        {/* These routes are for ch */}
+        <Route exact path="/news/ch/sports" element={<News />} ></Route>
+        <Route exact path="/news/ch/business" element={<News />} ></Route>
+        <Route exact path="/news/ch/entertainment" element={<News />} ></Route>
+        <Route exact path="/news/ch/general" element={<News />} ></Route>
+        <Route exact path="/news/ch/health" element={<News />} ></Route>
+        <Route exact path="/news/ch/science" element={<News />} ></Route>
+        <Route exact path="/news/ch/technology" element={<News />} ></Route>
+        {/* These routes are for ae */}
+        <Route exact path="/news/ae/sports" element={<News />} ></Route>
+        <Route exact path="/news/ae/business" element={<News />} ></Route>
+        <Route exact path="/news/ae/entertainment" element={<News />} ></Route>
+        <Route exact path="/news/ae/general" element={<News />} ></Route>
+        <Route exact path="/news/ae/health" element={<News />} ></Route>
+        <Route exact path="/news/ae/science" element={<News />} ></Route>
+        <Route exact path="/news/ae/technology" element={<News />} ></Route>
       </Routes>
     </div>
   );

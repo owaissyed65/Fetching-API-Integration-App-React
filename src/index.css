@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+*{
+    font-family: 'Poppins', sans-serif
+}
 .heading{
 position: relative;
-top: 31px;
+top: 31px
 }
 .dbn{
     margin-top: 3.2rem!important;
@@ -11,4 +15,15 @@ top: 31px;
 button{
     background-color:transparent !important;
     border: none !important;
+}
+.home:hover{
+    /* color: blue !important; */
+    border-bottom: 2px solid red !important;
+}
+.exbtn:hover{
+    color: rgb(59, 213, 224) !important;
+}
+.news-link:hover{
+    color: rgb(59, 213, 224) !important;
+
 }

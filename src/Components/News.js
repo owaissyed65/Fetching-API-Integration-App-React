@@ -57,7 +57,31 @@ const News = () => {
 
                 return newCountry
             }
-            
+            if (country === 'pt') {
+                country = 'portugal'
+                let newCountry = country.toUpperCase()
+                let newCategory = category.charAt(0).toUpperCase() + category.slice(1)
+                document.title = `${newCountry}-${newCategory} Top headlines`
+
+                return newCountry
+            }
+            if (country === 'ch') {
+                country = 'switzerland'
+                let newCountry = country.toUpperCase()
+                let newCategory = category.charAt(0).toUpperCase() + category.slice(1)
+                document.title = `${newCountry}-${newCategory} Top headlines`
+
+                return newCountry
+            }
+            if (country === 'ae') {
+                country = 'united arab emirate'
+                let newCountry = country.toUpperCase()
+                let newCategory = category.charAt(0).toUpperCase() + category.slice(1)
+                document.title = `${newCountry}-${newCategory} Top headlines`
+
+                return newCountry
+            }
+
         }
         else {
             return country
@@ -76,14 +100,14 @@ const News = () => {
     return (
         <>
             <div >
-                <h1 className='container d-flex justify-content-center mt-5 heading my-3'>{changeCountry(country)?changeCountry(country):'USA'} </h1>
-                <h1 className='container d-flex justify-content-center mt-3 heading my-3 'style={{width:'100vw'}} >{capitalizeLetter(category)?capitalizeLetter(category):'General'} - Top Headline</h1>
+                <h1 className='container d-flex justify-content-center mt-5 heading my-3'>{changeCountry(country) ? changeCountry(country) : 'USA'} </h1>
+                <h1 className='container d-flex justify-content-center mt-3 heading my-3 ' style={{ width: '100vw' }} >{capitalizeLetter(category) ? capitalizeLetter(category) : 'General'} - Top Headline</h1>
                 {/* {load && <Spinner />} */}
                 <div className="container">
                     <InfiniteScroll
                         dataLength={articles.length}
-                        next={() => fetchMoreData(country, category)}
-                        hasMore={results !== articles.length }
+                        next={() => { fetchMoreData(country, category) }}
+                        hasMore={results !== articles.length}
                         loader={<Spinner />}
                     >
                         <div className='container'>
